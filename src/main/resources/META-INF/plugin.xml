@@ -1,0 +1,45 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>cn</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>MyBatisPlus SQLTool</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="haod0705@163.com" url="">HaoDongDong</vendor>
+    <version>1.0</version>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description><![CDATA[
+        A plugin designed for formatting SQL queries within the MyBatis-Plus framework.<br><br>
+        <b>Introduction:</b><br>
+
+        This plugin aims to simplify the process of formatting SQL queries used in MyBatis-Plus framework. It provides two primary methods of usage:<br><br>
+        <b>Usage:</b><br>
+
+        1. Select the SQL directly in the console, then right-click and choose "sqlFormat" for formatting.<br>
+        2. Open a log file, select the SQL statements to convert, then right-click and choose "sqlFormat" for formatting.<br><br>
+
+        These steps enable quick and accurate formatting of SQL queries into standardized formats.<br><br>
+    ]]></description>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+    </extensions>
+
+    <actions>
+        <action id="sqlFormat" class="cn.SqlFormat" text="SqlFormat">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <add-to-group group-id="ConsoleEditorPopupMenu" anchor="first"/>
+        </action>
+    </actions>
+</idea-plugin>
