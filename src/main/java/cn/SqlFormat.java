@@ -67,7 +67,8 @@ public class SqlFormat extends AnAction {
             sql.append("-- ").append(sqlVO.getResult()).append("\n");
 
             String sqlStr = sqlVO.getSql();
-
+            String paramMarkers = "!@@##abcdef";
+            sqlStr = sqlStr.replace("?", paramMarkers);
             if (sqlVO.getParameters() != null && !sqlVO.getParameters().isEmpty()) {
                 String[] paramValues = sqlVO.getParameters().split(", ");
                 for (String paramValue : paramValues) {
@@ -79,9 +80,9 @@ public class SqlFormat extends AnAction {
                     if (paramValue.contains("(")) {
                         String value = paramValue.substring(0, paramValue.lastIndexOf("("));
                         String type = paramValue.substring(paramValue.lastIndexOf("(") + 1, paramValue.lastIndexOf(")"));
-                        sqlStr = sqlStr.replaceFirst("\\?", shouldAddQuotes(type, value));
+                        sqlStr = sqlStr.replaceFirst(paramMarkers, shouldAddQuotes(type, value));
                     }else {
-                        sqlStr = sqlStr.replaceFirst("\\?", paramValue);
+                        sqlStr = sqlStr.replaceFirst(paramMarkers, paramValue);
                     }
 
                 }
