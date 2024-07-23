@@ -49,7 +49,7 @@ public class SqlFormat extends AnAction {
     public static String formatSql(String text){
 
         String[] lines = text.split("\n");
-        StrBuilder sql = new StrBuilder("");
+        StringBuilder sql = new StringBuilder();
 
         List<SqlVO> sqlParaStrMap = getSqlMaps(lines);
 
@@ -59,10 +59,6 @@ public class SqlFormat extends AnAction {
 
         for (SqlVO sqlVO : sqlParaStrMap) {
 
-            if (!sql.isEmpty()) {
-                sql.append("\n");
-                sql.append("\n");
-            }
             sql.append("-- ").append(sqlVO.getTip()).append("\n");
             sql.append("-- ").append(sqlVO.getResult()).append("\n");
 
@@ -89,6 +85,9 @@ public class SqlFormat extends AnAction {
             }
 
             sql.append(SqlFormatter.format(sqlStr));
+
+            sql.append("\n");
+            sql.append("\n");
 
         }
 
